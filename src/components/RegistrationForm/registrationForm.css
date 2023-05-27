@@ -1,0 +1,17 @@
+input {
+ margin-bottom: -1rem;
+}
+
+h2 {
+  margin-top: -2rem;
+  margin-bottom: 1rem;
+}
+
+
+.submit-button.filled {
+  background-color: #5D5FEF;
+  color: white;
+}
+input::placeholder {
+  background-color: #F7F7F8;
+}
