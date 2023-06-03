@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isFormFilled, setIsFormFilled] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -18,28 +19,38 @@ const Login = () => {
     setIsFormFilled(e.target.value !== '');
   };
 
+  const handleFormSubmit = async (values, { setSubmitting }) => {
+    try {
+      const response = await fetch(
+        'http://34.107.1.158/?format=openapi/login',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(values),
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+      } else {
+        const errorData = await response.json();
+        setErrorMessage(errorData.message);
+      }
+    } catch (error) {
+      setErrorMessage('An error occurred');
+    }
+
+    setSubmitting(false);
+  };
   return (
     <div className="form">
       <img src={smile} alt="Smile" />
       <Formik
         initialValues={{ email: '', password: '' }}
-        validate={(values) => {
-          const errors = {};
-          if (!values.email) {
-            /*{errors.email = 'Required';}*/
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            /*{errors.email = 'Invalid email address';}*/
-          }
-          return errors;
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
-        }}
+        validate={(values) => {}}
+        onSubmit={handleFormSubmit}
       >
         {({
           values,
@@ -66,10 +77,12 @@ const Login = () => {
               />
               <label htmlFor="email">Электронная почта</label>
             </div>
-
+            {/* Error message */}
             {errors.email && touched.email && errors.email}
 
+            {/* Password field */}
             <div className="password-field input-container-password">
+              {/* Password input */}
               <input
                 type={showPassword ? 'text' : 'password'}
                 name="password"
@@ -82,6 +95,7 @@ const Login = () => {
                 placeholder=" "
               />
               <label htmlFor="password">Пароль</label>
+              {/* Toggle password visibility button */}
               <button
                 type="button"
                 className="toggle-password"
@@ -90,8 +104,15 @@ const Login = () => {
                 {showPassword ? '🕶️' : '👓'}
               </button>
             </div>
-            <a href="#">Забыли пароль?</a>
+            {/* Forgot password link */}
+
+            <Link to="/passwordreset">Забыли пароль?</Link>
+            {/* Password error message */}
             {errors.password && touched.password && errors.password}
+            {errorMessage && (
+              <div className="error-message">Неверный логин или пароль</div>
+            )}
+            {/* Submit button */}
             <button
               type="submit"
               disabled={isSubmitting}

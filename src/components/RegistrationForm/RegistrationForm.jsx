@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import s from './registrationForm.css'; // Импортируем файл со стилями
+import s from './registrationForm.css'; 
 import smile from '../assets/img/smile.png';
 import { Formik, Field, Form } from 'formik';
 

@@ -3,26 +3,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import smile from '../assets/img/smile.png';
 import axios from 'axios';
+import styles from '../Registration/registration.css';
+import s from './passwordReset.css';
 
 import {
   setTokens,
   setLoading,
 } from '../../redux/actions/passwordResetActions';
 
-import styles from '../Registration/registration.css';
-import s from './passwordReset.css';
+const isLoading = false;
 
 const PasswordReset = () => {
   const [isFormFilled, setIsFormFilled] = useState(false);
   const dispatch = useDispatch();
-  const { tokens, isLoading } = useSelector((state) => state.passwordReset);
+  //const { tokens, isLoading } = useSelector((state) => state.passwordReset);
 
   const formik = useFormik({
     initialValues: {
       email: '',
     },
     onSubmit: async (values) => {
-      dispatch(setLoading(true));
+      // dispatch(setLoading(true));
 
       try {
         const response = await axios.post('API_ENDPOINT', values);

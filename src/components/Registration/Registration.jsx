@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import smile from '../assets/img/smile.png';
-import { useState, useEffect } from 'react';
+import axios from 'axios';
 import styles from './registration.css';
 
 const Registration = () => {
@@ -11,13 +11,38 @@ const Registration = () => {
     initialValues: {
       email: '',
     },
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      try {
+        const response = await axios.post(
+          'http://34.107.1.158/auth/register/',
+          {
+            email: values.email,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRFToken':
+                'QPgzpQTYjyrHjNdsGa0jzrst10gWe0aoTZkjljGymi98wxHCztQM6Iv4sWVWypJ3',
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          const data = response.data;
+          console.log('Successful response:', data);
+        } else {
+          console.log('Error response:', response.data);
+        }
+      } catch (error) {
+        console.log('Fetch error:', error);
+      }
     },
   });
+
   useEffect(() => {
     setIsFormFilled(!!formik.values.email);
   }, [formik.values.email]);
+
   return (
     <div className="form">
       <img src={smile} alt="Smile" />
