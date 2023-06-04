@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import smile from '../assets/img/smile.png';
 import axios from 'axios';
@@ -11,29 +11,32 @@ import {
   setLoading,
 } from '../../redux/actions/passwordResetActions';
 
-const isLoading = false;
-
 const PasswordReset = () => {
   const [isFormFilled, setIsFormFilled] = useState(false);
   const dispatch = useDispatch();
-  //const { tokens, isLoading } = useSelector((state) => state.passwordReset);
 
   const formik = useFormik({
     initialValues: {
       email: '',
     },
     onSubmit: async (values) => {
-      // dispatch(setLoading(true));
-
       try {
-        const response = await axios.post('API_ENDPOINT', values);
+        const response = await axios.post(
+          'http://34.107.1.158/auth/password_reset/',
+          values,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRFToken':
+                '7fWplB0tjkVeq3giGoHzoUpnkURbLQl4ap09h4N3m4DFDNKszHx2VbsYLQwb5fUJ',
+            },
+          }
+        );
         const data = response.data;
-        dispatch(setTokens(data.tokens));
+        console.log('Response:', data);
       } catch (error) {
-        console.error('Ошибка при сбросе пароля:', error);
+        console.error('Error resetting password:', error);
       }
-
-      dispatch(setLoading(false));
     },
   });
 
@@ -65,9 +68,8 @@ const PasswordReset = () => {
         <button
           type="submit"
           className={`submit-button ${isFormFilled ? 'filled' : ''}`}
-          disabled={isLoading}
         >
-          {isLoading ? 'Загрузка...' : 'Далее'}
+          Далее
         </button>
       </form>
     </div>
