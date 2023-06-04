@@ -14,7 +14,7 @@ const Registration = () => {
     onSubmit: async (values) => {
       try {
         const response = await axios.post(
-          'https://34.107.1.158/auth/register/',
+          'http://34.107.1.158/auth/register/',
           {
             email: values.email,
           },
