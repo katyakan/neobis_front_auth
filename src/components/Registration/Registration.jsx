@@ -12,7 +12,7 @@ const Registration = () => {
     },
     onSubmit: async (values) => {
       try {
-        const response = await fetch('https://34.107.1.158/auth/register/', {
+        const response = await fetch('http://34.107.1.158/auth/register/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
