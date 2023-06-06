@@ -1,4 +1,21 @@
 {
+  "version": 2,
+  "builds": [
+    {
+      "src": "path/to/source/folder",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "path/to/api/endpoint.js"
+    },
+    {
+      "src": ".*",
+      "dest": "path/to/static/index.html"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
