@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import s from './registrationForm.css'; 
+import axios from 'axios';
+import s from './registrationForm.css';
 import smile from '../assets/img/smile.png';
 import { Formik, Field, Form } from 'formik';
 
@@ -31,8 +32,14 @@ const RegistrationForm = () => {
           date: '',
         }}
         onSubmit={async (values) => {
-          await new Promise((r) => setTimeout(r, 500));
-          alert(JSON.stringify(values, null, 2));
+          const endpoint = 'http://34.107.1.158/auth/register-update/';
+
+          try {
+            await axios.post(endpoint, values);
+            alert('Registration successful!');
+          } catch (error) {
+            alert('Registration failed. Please try again.');
+          }
         }}
         onChange={handleFormChange}
       >
@@ -45,10 +52,7 @@ const RegistrationForm = () => {
             <Field id="lastName" name="lastName" placeholder=" " />
             <label htmlFor="lastName">Фамилия</label>
           </div>
-          <div className="input-container">
-            <Field id="email" name="email" placeholder=" " type="email" />
-            <label htmlFor="email">Электронная почта</label>
-          </div>
+
           <div className={`input-container ${isDateSelected ? 'filled' : ''}`}>
             <Field
               id="date"

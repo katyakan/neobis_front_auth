@@ -14,16 +14,9 @@ const Registration = () => {
     onSubmit: async (values) => {
       try {
         const response = await axios.post(
-          'https://34.107.1.158/auth/register/',
+          'http://34.107.1.158/auth/register/',
           {
             email: values.email,
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              'X-CSRFToken':
-                'QPgzpQTYjyrHjNdsGa0jzrst10gWe0aoTZkjljGymi98wxHCztQM6Iv4sWVWypJ3',
-            },
           }
         );
 
