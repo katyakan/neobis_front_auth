@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import smile from '../assets/img/smile.png';
-import axios from 'axios';
 import styles from './registration.css';
 
 const Registration = () => {
@@ -13,18 +12,20 @@ const Registration = () => {
     },
     onSubmit: async (values) => {
       try {
-        const response = await axios.post(
-          'http://34.107.1.158/auth/register/',
-          {
-            email: values.email,
-          }
-        );
+        const response = await fetch('http://34.107.1.158/auth/register/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: values.email }),
+        });
 
-        if (response.status === 200) {
-          const data = response.data;
+        if (response.ok) {
+          const data = await response.json();
           console.log('Successful response:', data);
         } else {
-          console.log('Error response:', response.data);
+          const errorData = await response.json();
+          console.log('Error response:', errorData);
         }
       } catch (error) {
         console.log('Fetch error:', error);
