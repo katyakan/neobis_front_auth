@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Redirect } from 'react-router-dom';
-import s from './registrationForm.css';
+import { useParams } from 'react-router-dom';
 import smile from '../assets/img/smile.png';
 import { Formik, Field, Form } from 'formik';
 import { Navigate } from 'react-router-dom';
@@ -16,7 +15,7 @@ const RegistrationForm = () => {
     const checkToken = async () => {
       try {
         const response = await fetch(
-          https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/register-update/?token=${token}
+          `https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/register-update/?token=${token}`
         );
         if (response.ok) {
           setIsRegistered(true);
@@ -109,7 +108,7 @@ const RegistrationForm = () => {
           </div>
           <button
             type="submit"
-            className={submit-button ${isDateSelected ? 'filled' : ''}}
+            className={`submit-button ${isDateSelected ? 'filled' : ''}`}
           >
             Регистрация
           </button>
