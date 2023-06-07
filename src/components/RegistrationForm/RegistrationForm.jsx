@@ -16,7 +16,12 @@ const RegistrationForm = () => {
     const checkToken = async () => {
       try {
         const response = await fetch(
-          `https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/register-update/?token=${token}`
+          'https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/register-update/',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         if (response.ok) {
           setIsRegistered(true);
@@ -53,6 +58,7 @@ const RegistrationForm = () => {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(values),
         }
