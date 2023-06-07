@@ -87,7 +87,7 @@ const RegistrationForm = () => {
         initialValues={{
           firstName: '',
           lastName: '',
-          email: '',
+          phone: '',
           date: '',
         }}
         onSubmit={handleRegistration}
@@ -101,6 +101,10 @@ const RegistrationForm = () => {
           <div className="input-container">
             <Field id="lastName" name="lastName" placeholder=" " />
             <label htmlFor="lastName">Фамилия</label>
+          </div>
+          <div className="input-container">
+            <Field id="phone" name="phone" placeholder=" " />
+            <label htmlFor="phone">Номер телефона</label>
           </div>
           <div className="input-container">
             <Field
