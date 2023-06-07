@@ -50,7 +50,7 @@ const RegistrationForm = () => {
       const response = await fetch(
         'https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/register-update/',
         {
-          method: 'PUT', // Изменяем метод запроса на "PUT"
+          method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -68,7 +68,6 @@ const RegistrationForm = () => {
       alert('Registration failed. Please try again.');
     }
   };
-  
 
   if (isRegistered) {
     return <Navigate to="/passwordset" />;
