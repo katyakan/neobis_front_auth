@@ -5,6 +5,7 @@ import styles from './registration.css';
 
 const Registration = () => {
   const [isFormFilled, setIsFormFilled] = useState(false);
+  const [isRequestSuccessful, setIsRequestSuccessful] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -12,15 +13,19 @@ const Registration = () => {
     },
     onSubmit: async (values) => {
       try {
-        const response = await fetch('http://34.107.1.158/auth/register/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email: values.email }),
-        });
+        const response = await fetch(
+          'https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/register/',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email: values.email }),
+          }
+        );
 
         if (response.ok) {
+          setIsRequestSuccessful(true);
           const data = await response.json();
           console.log('Successful response:', data);
         } else {
@@ -41,26 +46,30 @@ const Registration = () => {
     <div className="form">
       <img src={smile} alt="Smile" />
       <h2>Регистрация</h2>
-      <form onSubmit={formik.handleSubmit}>
-        <div className="input-container">
-          <input
-            id="email-register"
-            name="email"
-            type="email"
-            onChange={formik.handleChange}
-            value={formik.values.email}
-            placeholder=" "
-          />
-          <label htmlFor="email-register">Электронная почта</label>
-        </div>
+      {isRequestSuccessful ? (
+        <p>Мы отправили вам письмо на почту.</p>
+      ) : (
+        <form onSubmit={formik.handleSubmit}>
+          <div className="input-container">
+            <input
+              id="email-register"
+              name="email"
+              type="email"
+              onChange={formik.handleChange}
+              value={formik.values.email}
+              placeholder=" "
+            />
+            <label htmlFor="email-register">Электронная почта</label>
+          </div>
 
-        <button
-          type="submit"
-          className={`submit-button ${isFormFilled ? 'filled' : ''}`}
-        >
-          Далее
-        </button>
-      </form>
+          <button
+            type="submit"
+            className={`submit-button ${isFormFilled ? 'filled' : ''}`}
+          >
+            Далее
+          </button>
+        </form>
+      )}
     </div>
   );
 };

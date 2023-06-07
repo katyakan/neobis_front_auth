@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import s from './registrationForm.css';
 import smile from '../assets/img/smile.png';
 import { Formik, Field, Form } from 'formik';
@@ -32,11 +31,24 @@ const RegistrationForm = () => {
           date: '',
         }}
         onSubmit={async (values) => {
-          const endpoint = 'http://34.107.1.158/auth/register-update/';
-
           try {
-            await axios.post(endpoint, values);
-            alert('Registration successful!');
+            const response = await fetch(
+              'http://34.107.1.158/auth/register-update/',
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(values),
+              }
+            );
+
+            if (response.ok) {
+              alert('Registration successful!');
+              // сюда редирект на след страницу, если код успешный
+            } else {
+              alert('Registration failed. Please try again.');
+            }
           } catch (error) {
             alert('Registration failed. Please try again.');
           }
