@@ -137,7 +137,7 @@ const RegistrationForm = () => {
               type="submit"
               className={`submit-button ${isDateSelected ? 'filled' : ''}`}
             >
-              Регистрация!!!
+              Регистрация
             </button>
           </Form>
         )}
