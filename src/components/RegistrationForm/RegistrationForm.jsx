@@ -16,12 +16,7 @@ const RegistrationForm = () => {
     const checkToken = async () => {
       try {
         const response = await fetch(
-          'https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/register-update/',
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+          https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/register-update/?token=${token}
         );
         if (response.ok) {
           setIsRegistered(true);
@@ -58,7 +53,6 @@ const RegistrationForm = () => {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(values),
         }
@@ -87,7 +81,7 @@ const RegistrationForm = () => {
         initialValues={{
           firstName: '',
           lastName: '',
-          phone: '',
+          email: '',
           date: '',
         }}
         onSubmit={handleRegistration}
@@ -103,10 +97,6 @@ const RegistrationForm = () => {
             <label htmlFor="lastName">Фамилия</label>
           </div>
           <div className="input-container">
-            <Field id="phone" name="phone" placeholder=" " />
-            <label htmlFor="phone">Номер телефона</label>
-          </div>
-          <div className="input-container">
             <Field
               id="date"
               name="date"
@@ -119,7 +109,7 @@ const RegistrationForm = () => {
           </div>
           <button
             type="submit"
-            className={`submit-button ${isDateSelected ? 'filled' : ''}`}
+            className={submit-button ${isDateSelected ? 'filled' : ''}}
           >
             Регистрация
           </button>
