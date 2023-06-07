@@ -5,6 +5,7 @@ import smile from '../assets/img/smile.png';
 import { Formik, Field, Form } from 'formik';
 import { Navigate } from 'react-router-dom';
 
+
 const RegistrationForm = () => {
   const [dateValue, setDateValue] = useState('');
   const [isDateSelected, setIsDateSelected] = useState(false);
@@ -15,6 +16,9 @@ const RegistrationForm = () => {
   useEffect(() => {
     const checkToken = async () => {
       try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+
         const response = await fetch(
           `https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/register-update/`,
           {
