@@ -16,7 +16,7 @@ const RegistrationForm = () => {
     const checkToken = async () => {
       try {
         const response = await fetch(
-          `https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/register-update/${token}`
+          `https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/register-update/?token=${token}`
         );
         if (response.ok) {
           setIsRegistered(true);
