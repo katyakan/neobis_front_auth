@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import smile from '../assets/img/smile.png';
 import styles from './passwordReset.css';
+import axios from 'axios';
 
-const Registration = () => {
+const PasswordReset = () => {
   const [isFormFilled, setIsFormFilled] = useState(false);
   const [isRequestSuccessful, setIsRequestSuccessful] = useState(false);
 
@@ -13,27 +14,24 @@ const Registration = () => {
     },
     onSubmit: async (values) => {
       try {
-        const response = await fetch(
+        const response = await axios.post(
           'https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/password_reset/',
+          { email: values.email },
           {
-            method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ email: values.email }),
           }
         );
 
-        if (response.ok) {
+        if (response.status === 200) {
           setIsRequestSuccessful(true);
-          const data = await response.json();
-          console.log('Successful response:', data);
+          console.log('Successful response:', response.data);
         } else {
-          const errorData = await response.json();
-          console.log('Error response:', errorData);
+          console.log('Error response:', response.data);
         }
       } catch (error) {
-        console.log('Fetch error:', error);
+        console.log('Axios error:', error);
       }
     },
   });
@@ -50,11 +48,11 @@ const Registration = () => {
         <p>Мы отправили вам письмо на почту.</p>
       ) : (
         <form onSubmit={formik.handleSubmit}>
+          <p className="description">
+            На введенную вами почту мы отправим ссылку, перейдя по которой вы
+            сможете сбросить пароль
+          </p>
           <div className="input-container">
-            <p className="description">
-              На введенную вами почту мы отправим ссылку, перейдя по которой вы
-              сможете сбросить пароль
-            </p>
             <input
               id="email-register"
               name="email"
@@ -78,4 +76,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default PasswordReset;
