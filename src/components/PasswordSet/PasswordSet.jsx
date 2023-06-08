@@ -4,6 +4,7 @@ import smile from '../assets/img/smile.png';
 import opened from '../assets/img/opened.png';
 import closed from '../assets/img/closed.png';
 import styles from './passwordSet.css';
+import axios from 'axios';
 
 const PasswordSet = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -11,7 +12,19 @@ const PasswordSet = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+  const handleFormSubmit = async (values, { setSubmitting }) => {
+    try {
+      await axios.put(
+        'https://cors-anywhere.herokuapp.com/http://34.107.1.158/password-update/',
+        values
+      );
 
+      console.log('Password updated successfully');
+    } catch (error) {
+      console.log('Error updating password:', error.message);
+    }
+    setSubmitting(false);
+  };
   return (
     <div className="form">
       <img src={smile} alt="smile" />
@@ -39,12 +52,7 @@ const PasswordSet = () => {
           }
           return errors;
         }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
-        }}
+        onSubmit={handleFormSubmit}
       >
         {({
           values,
