@@ -29,7 +29,7 @@ const PasswordSet = () => {
     <div className="form">
       <img src={smile} alt="smile" />
       <Formik
-        initialValues={{ password: '', confirmPassword: '' }}
+        initialValues={{ password: '', confirm_password: '' }}
         validate={(values) => {
           const errors = {};
           if (!values.password) {
@@ -45,8 +45,8 @@ const PasswordSet = () => {
             errors.password =
               'Password must contain at least one uppercase letter';
           }
-          if (!values.confirmPassword) {
-            errors.confirmPassword = 'Required';
+          if (!values.confirm_password) {
+            errors.confirm_password = 'Required';
           } else if (values.password !== values.confirmPassword) {
             errors.confirmPassword = 'Passwords do not match';
           }
@@ -91,13 +91,13 @@ const PasswordSet = () => {
             <div className="password-field input-container-password">
               <input
                 type={showPassword ? 'text' : 'password'}
-                name="confirmPassword"
+                name="confirm_password"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.confirmPassword}
+                value={values.confirm_password}
                 placeholder=" "
               />
-              <label htmlFor="confirmPassword">Повторите пароль</label>
+              <label htmlFor="confirm_password">Повторите пароль</label>
               <button
                 type="button"
                 className="toggle-password"
@@ -111,8 +111,8 @@ const PasswordSet = () => {
               </button>
             </div>
             {errors.confirmPassword &&
-              touched.confirmPassword &&
-              errors.confirmPassword}
+              touched.confirm_password &&
+              errors.confirm_password}
             <div className="matches">
               {' '}
               <li className={values.password.match(/[0-9]/) ? 'blue' : ''}>
@@ -126,7 +126,7 @@ const PasswordSet = () => {
               </li>
               <li
                 className={
-                  values.password === values.confirmPassword && values.password
+                  values.password === values.confirm_password && values.password
                     ? 'blue'
                     : ''
                 }
@@ -138,7 +138,7 @@ const PasswordSet = () => {
             <button
               type="submit"
               className={`submit-button ${
-                values.confirmPassword === values.password ? 'filled' : ''
+                values.confirm_password === values.password ? 'filled' : ''
               }`}
               disabled={isSubmitting}
             >
