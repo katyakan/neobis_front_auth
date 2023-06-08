@@ -22,7 +22,7 @@ const Login = () => {
   const handleFormSubmit = async (values, { setSubmitting }) => {
     try {
       const response = await fetch(
-        'http://34.107.1.158/?format=openapi/login',
+        'https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/login/',
         {
           method: 'POST',
           headers: {

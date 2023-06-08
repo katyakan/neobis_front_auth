@@ -19,7 +19,7 @@ function App() {
           <Route path="/registration" element={<Registration />}></Route>
           <Route path="/authentication" element={<Authentication />}></Route>
           <Route
-            path="/registrationform"
+            path="/registrationform/:token"
             element={<RegistrationForm />}
           ></Route>
           <Route path="/passwordset" element={<PasswordSet />}></Route>
