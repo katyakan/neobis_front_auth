@@ -17,7 +17,7 @@ const RegistrationForm = () => {
       try {
         console.log(token);
         const response = await fetch(
-          `https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/register-update/`,
+          `https://cors-anywhere.herokuapp.com/http://34.107.1.158/register-update/`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -57,7 +57,7 @@ const RegistrationForm = () => {
   const handleRegistration = async (values) => {
     try {
       const response = await fetch(
-        `https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/register-update/`,
+        `https://cors-anywhere.herokuapp.com/http://34.107.1.158/register-update/`,
         {
           method: 'PUT',
           headers: {

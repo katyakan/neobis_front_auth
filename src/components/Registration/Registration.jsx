@@ -14,7 +14,7 @@ const Registration = () => {
     onSubmit: async (values) => {
       try {
         const response = await fetch(
-          'https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/register/',
+          'https://cors-anywhere.herokuapp.com/http://34.107.1.158/register/',
           {
             method: 'POST',
             headers: {
