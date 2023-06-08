@@ -23,6 +23,10 @@ html {
   line-height: 1.2;
   margin: 0;
   padding: 0; 
+ 
+    overflow: hidden;
+    height: 100vh; 
+  
 }
 
 body {
