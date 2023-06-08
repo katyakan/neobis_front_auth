@@ -35,7 +35,7 @@ const Authentication = () => {
     <div className="form">
       <img src={smile} alt="Smile" />
       <h2>Мы отправили письмо с подтверждением на почту</h2>
-
+      <a href="authapp://additionalInfo">link to mobile</a>
       {timer > 0 && (
         <p className="repeat_text">
           Повторный запрос <br /> ↻ 00:{formatTimer(timer)}

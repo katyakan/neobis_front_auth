@@ -23,6 +23,10 @@ function App() {
           ></Route>
           <Route path="/passwordset" element={<PasswordSet />}></Route>
           <Route path="/passwordreset" element={<PasswordReset />}></Route>
+          <Route
+            path="/passwordresetconfirm"
+            element={<PasswordResetConfirm />}
+          ></Route>
         </Routes>
       </div>
     </>
