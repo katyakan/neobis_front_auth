@@ -15,8 +15,6 @@ const RegistrationForm = () => {
   useEffect(() => {
     const checkToken = async () => {
       try {
-        //const urlParams = new URLSearchParams(window.location.search);
-        //const tokenParam = urlParams.get('token');
         console.log(token);
         const response = await fetch(
           `https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/register-update/`,
