@@ -5,28 +5,29 @@ import smile from '../assets/img/smile.png';
 import { Formik, Field, Form } from 'formik';
 import { Navigate } from 'react-router-dom';
 
-
 const RegistrationForm = () => {
   const [dateValue, setDateValue] = useState('');
   const [isDateSelected, setIsDateSelected] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
-
   const { token } = useParams();
+  const [jwtToken, setJwtToken] = useState('');
 
   useEffect(() => {
     const checkToken = async () => {
       try {
         const urlParams = new URLSearchParams(window.location.search);
         const tokenParam = urlParams.get('token');
+        setJwtToken(tokenParam);
 
         const response = await fetch(
-          `https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/register-update/`,
+          'https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/register-update/',
           {
             headers: {
               Authorization: `Bearer ${tokenParam}`,
             },
           }
         );
+
         if (response.ok) {
           setIsRegistered(true);
         } else {
@@ -57,12 +58,12 @@ const RegistrationForm = () => {
   const handleRegistration = async (values) => {
     try {
       const response = await fetch(
-        `https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/register-update/`,
+        'https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/register-update/',
         {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${jwtToken}`,
           },
           body: JSON.stringify(values),
         }
@@ -117,12 +118,7 @@ const RegistrationForm = () => {
               <label htmlFor="lastName">Фамилия</label>
             </div>
             <div className="input-container">
-              <Field
-                id="phone"
-                name="phone"
-                placeholder=" "
-                onChange={handleChange}
-              />
+              <Field id="phone" name placeholder=" " onChange={handleChange} />
               <label htmlFor="phone">Номер телефона</label>
             </div>
             <div className="input-container">
@@ -149,5 +145,5 @@ const RegistrationForm = () => {
     </div>
   );
 };
+
 export default RegistrationForm;
-               
