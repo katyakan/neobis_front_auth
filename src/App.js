@@ -8,6 +8,7 @@ import './App.css';
 import RegistrationForm from './components/RegistrationForm/RegistrationForm';
 import PasswordSet from './components/PasswordSet/PasswordSet';
 import PasswordReset from './components/PasswordReset/PasswordReset';
+import PasswordResetConfirm from './components/PasswordResetConfirm/PasswordResetConfirm';
 
 function App() {
   return (

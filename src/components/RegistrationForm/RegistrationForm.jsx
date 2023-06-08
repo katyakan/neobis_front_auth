@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 import s from './registrationForm.css';
 import smile from '../assets/img/smile.png';
 import { Formik, Field, Form } from 'formik';
-import { Navigate } from 'react-router-dom';
-
 
 const RegistrationForm = () => {
   const [dateValue, setDateValue] = useState('');
   const [isDateSelected, setIsDateSelected] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
+  const [error, setError] = useState(null);
 
   const { token } = useParams();
 
@@ -20,20 +19,23 @@ const RegistrationForm = () => {
         const tokenParam = urlParams.get('token');
 
         const response = await fetch(
-          `https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/register-update/`,
+          `http://34.107.1.158/auth/register-update/`,
           {
             headers: {
               Authorization: `Bearer ${tokenParam}`,
             },
           }
         );
+
         if (response.ok) {
           setIsRegistered(true);
+        } else if (response.status === 401) {
+          setError('Unauthorized: Invalid token');
         } else {
-          setIsRegistered(false);
+          setError('Registration request failed');
         }
       } catch (error) {
-        setIsRegistered(false);
+        setError('Registration request failed');
       }
     };
 
@@ -57,7 +59,7 @@ const RegistrationForm = () => {
   const handleRegistration = async (values) => {
     try {
       const response = await fetch(
-        `https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/register-update/`,
+        `http://34.107.1.158/auth/register-update/`,
         {
           method: 'PUT',
           headers: {
@@ -72,10 +74,10 @@ const RegistrationForm = () => {
         alert('Registration successful!');
         setIsRegistered(true);
       } else {
-        alert('Registration failed. Please try again.');
+        setError('Registration failed. Please try again.');
       }
     } catch (error) {
-      alert('Registration failed. Please try again.');
+      setError('Registration failed. Please try again.');
     }
   };
 
@@ -87,6 +89,7 @@ const RegistrationForm = () => {
     <div className="form">
       <img src={smile} alt="smile" />
       <h2>Регистрация</h2>
+      {error && <p>{error}</p>}
       <Formik
         initialValues={{
           firstName: '',
@@ -149,5 +152,5 @@ const RegistrationForm = () => {
     </div>
   );
 };
+
 export default RegistrationForm;
-               
