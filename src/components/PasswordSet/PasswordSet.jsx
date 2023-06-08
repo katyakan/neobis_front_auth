@@ -47,7 +47,7 @@ const PasswordSet = () => {
           }
           if (!values.confirm_password) {
             errors.confirm_password = 'Required';
-          } else if (values.password !== values.confirmPassword) {
+          } else if (values.password !== values.confirm_password) {
             errors.confirmPassword = 'Passwords do not match';
           }
           return errors;
@@ -110,7 +110,7 @@ const PasswordSet = () => {
                 )}
               </button>
             </div>
-            {errors.confirmPassword &&
+            {errors.confirm_password &&
               touched.confirm_password &&
               errors.confirm_password}
             <div className="matches">
