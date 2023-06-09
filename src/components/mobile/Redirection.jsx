@@ -10,17 +10,13 @@ const Redirect = () => {
     const token = url.searchParams.get('token');
 
     // Формируем URL для редиректа с токеном
-    const redirectURL = authapp://additionalInfo?token=${token};
+    const redirectURL = `authapp://additionalInfo?token=${token}`;
 
     // Выполняем редирект
     window.location.href = redirectURL;
   }, []);
 
-  return (
-    <div>
-      
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Redirect;
