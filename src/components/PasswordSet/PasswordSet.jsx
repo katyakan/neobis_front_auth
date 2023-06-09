@@ -19,12 +19,14 @@ const PasswordSet = () => {
       await axios.put(
         'https://cors-anywhere.herokuapp.com/http://34.107.1.158/password-update/',
         {
-          method: 'PUT',
+          password: values.password,
+          confirm_password: values.confirm_password,
+        },
+        {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(values),
         }
       );
 

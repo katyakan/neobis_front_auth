@@ -5,6 +5,7 @@ import opened from '../assets/img/opened.png';
 import closed from '../assets/img/closed.png';
 import styles from './passwordresetconfirm.css';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const PasswordResetConfirm = () => {
   const { token, uid } = useParams();
@@ -12,6 +13,22 @@ const PasswordResetConfirm = () => {
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleSubmit = async (values, { setSubmitting }) => {
+    try {
+      const response = await axios.post('/your-api-endpoint', {
+        token,
+        uid,
+        new_password1: values.new_password1,
+      });
+
+      console.log(response.data);
+      setSubmitting(false);
+    } catch (error) {
+      console.error(error);
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -37,17 +54,12 @@ const PasswordResetConfirm = () => {
           }
           if (!values.new_password2) {
             errors.new_password2 = 'Required';
-          } else if (values.password !== values.new_password2) {
+          } else if (values.new_password1 !== values.new_password2) {
             errors.new_password2 = 'Passwords do not match';
           }
           return errors;
         }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
-        }}
+        onSubmit={handleSubmit}
       >
         {({
           values,
@@ -154,3 +166,4 @@ const PasswordResetConfirm = () => {
 };
 
 export default PasswordResetConfirm;
+
