@@ -10,6 +10,7 @@ import PasswordSet from './components/PasswordSet/PasswordSet';
 import PasswordReset from './components/PasswordReset/PasswordReset';
 import PasswordResetConfirm from './components/PasswordResetConfirm/PasswordResetConfirm';
 import Redirection from './components/mobile/Redirection';
+import Project from './components/project/Project';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             element={<PasswordResetConfirm />}
           ></Route>
           <Route path="/redirection" element={<Redirection />}></Route>
+          <Route path="/project" element={<Project />}></Route>
         </Routes>
       </div>
     </>
