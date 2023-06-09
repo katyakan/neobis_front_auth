@@ -9,6 +9,7 @@ import RegistrationForm from './components/RegistrationForm/RegistrationForm';
 import PasswordSet from './components/PasswordSet/PasswordSet';
 import PasswordReset from './components/PasswordReset/PasswordReset';
 import PasswordResetConfirm from './components/PasswordResetConfirm/PasswordResetConfirm';
+import Redirection from './components/mobile/Redirection';
 
 function App() {
   return (
@@ -25,9 +26,10 @@ function App() {
           <Route path="/passwordset" element={<PasswordSet />}></Route>
           <Route path="/passwordreset" element={<PasswordReset />}></Route>
           <Route
-            path="/passwordresetconfirm"
+            path="/passwordresetconfirm/:uid/:token"
             element={<PasswordResetConfirm />}
           ></Route>
+          <Route path="/redirection" element={<Redirection />}></Route>
         </Routes>
       </div>
     </>

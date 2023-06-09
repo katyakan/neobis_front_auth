@@ -4,8 +4,10 @@ import smile from '../assets/img/smile.png';
 import opened from '../assets/img/opened.png';
 import closed from '../assets/img/closed.png';
 import styles from './passwordresetconfirm.css';
+import { useParams } from 'react-router-dom';
 
 const PasswordResetConfirm = () => {
+  const { token, uid } = useParams();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -16,20 +18,21 @@ const PasswordResetConfirm = () => {
     <div className="form">
       <img src={smile} alt="smile" />
       <Formik
-        initialValues={{ password: '', confirmPassword: '' }}
+        initialValues={{ new_password1: '', new_password2: '' }}
         validate={(values) => {
           const errors = {};
-          if (!values.password) {
-            errors.password = 'Required';
-          } else if (values.password.length < 8) {
-            errors.password = 'Password must be at least 8 characters long';
-          } else if (!/\d/.test(values.password)) {
-            errors.password = 'Password must contain at least one number';
-          } else if (!/[!@#$%^&*]/.test(values.password)) {
-            errors.password =
+          if (!values.new_password1) {
+            errors.new_password1 = 'Required';
+          } else if (values.new_password1.length < 8) {
+            errors.new_password1 =
+              'Password must be at least 8 characters long';
+          } else if (!/\d/.test(values.new_password1)) {
+            errors.new_password1 = 'Password must contain at least one number';
+          } else if (!/[!@#$%^&*]/.test(values.new_password1)) {
+            errors.new_password1 =
               'Password must contain at least one special character';
-          } else if (!/[A-Z]/.test(values.password)) {
-            errors.password =
+          } else if (!/[A-Z]/.test(values.new_password1)) {
+            errors.new_password1 =
               'Password must contain at least one uppercase letter';
           }
           if (!values.confirmPassword) {
@@ -62,10 +65,10 @@ const PasswordResetConfirm = () => {
                 name="password"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.password}
+                value={values.new_password1}
                 placeholder=" "
               />
-              <label htmlFor="password">Придумайте пароль</label>
+              <label htmlFor="new_password1">Придумайте пароль</label>
               <button
                 type="button"
                 className="toggle-password"
@@ -78,7 +81,9 @@ const PasswordResetConfirm = () => {
                 )}
               </button>
             </div>
-            {errors.password && touched.password && errors.password}
+            {errors.new_password1 &&
+              touched.new_password1 &&
+              errors.new_password1}
 
             <div className="password-field input-container-password">
               <input
@@ -107,18 +112,23 @@ const PasswordResetConfirm = () => {
               errors.confirmPassword}
             <div className="matches">
               {' '}
-              <li className={values.password.match(/[0-9]/) ? 'blue' : ''}>
+              <li className={values.new_password1.match(/[0-9]/) ? 'blue' : ''}>
                 Пароль содержит цифры
               </li>
-              <li className={values.password.match(/[!@#$%^&*]/) ? 'blue' : ''}>
+              <li
+                className={
+                  values.new_password1.match(/[!@#$%^&*]/) ? 'blue' : ''
+                }
+              >
                 пароль содержит Специальные символы
               </li>
-              <li className={values.password.match(/[A-Z]/) ? 'blue' : ''}>
+              <li className={values.new_password1.match(/[A-Z]/) ? 'blue' : ''}>
                 пароль содержит заглавные буквы
               </li>
               <li
                 className={
-                  values.password === values.confirmPassword && values.password
+                  values.new_password1 === values.confirmPassword &&
+                  values.new_password1
                     ? 'blue'
                     : ''
                 }
@@ -130,7 +140,7 @@ const PasswordResetConfirm = () => {
             <button
               type="submit"
               className={`submit-button ${
-                values.confirmPassword === values.password ? 'filled' : ''
+                values.confirmPassword === values.new_password1 ? 'filled' : ''
               }`}
               disabled={isSubmitting}
             >
