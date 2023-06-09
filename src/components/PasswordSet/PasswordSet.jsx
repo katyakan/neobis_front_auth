@@ -157,5 +157,4 @@ const PasswordSet = () => {
     </div>
   );
 };
-
 export default PasswordSet;
