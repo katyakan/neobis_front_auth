@@ -96,7 +96,9 @@ const PasswordSet = () => {
                 )}
               </button>
             </div>
-            {errors.password && touched.password && errors.password}
+            {errors.password && touched.password && (
+              <div>{errors.password}</div>
+            )}
 
             <div className="password-field input-container-password">
               <input
@@ -121,9 +123,10 @@ const PasswordSet = () => {
                 )}
               </button>
             </div>
-            {errors.confirm_password &&
-              touched.confirm_password &&
-              errors.confirm_password}
+            {errors.confirm_password && touched.confirm_password && (
+              <div>{errors.confirm_password}</div>
+            )}
+
             <div className="matches">
               {' '}
               <li className={values.password.match(/[0-9]/) ? 'blue' : ''}>
