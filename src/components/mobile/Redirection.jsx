@@ -1,16 +1,26 @@
-import React, { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
-const Redirection = () => {
-  const navigate = useNavigate();
-  const { token } = useParams();
-
+const Redirect = () => {
   useEffect(() => {
-    navigate('/authapp://additionalInfo');
-    window.location.href = `authapp://additionalInfo/${token}`;
-  }, [navigate, token]);
+    // Получаем текущий URL страницы
+    const currentURL = window.location.href;
 
-  return <div></div>;
+    // Извлекаем токен из текущего URL
+    const url = new URL(currentURL);
+    const token = url.searchParams.get('token');
+
+    // Формируем URL для редиректа с токеном
+    const redirectURL = authapp://additionalInfo?token=${token};
+
+    // Выполняем редирект
+    window.location.href = redirectURL;
+  }, []);
+
+  return (
+    <div>
+      
+    </div>
+  );
 };
 
-export default Redirection;
+export default Redirect;
