@@ -35,10 +35,10 @@ const PasswordResetConfirm = () => {
             errors.new_password1 =
               'Password must contain at least one uppercase letter';
           }
-          if (!values.confirmPassword) {
-            errors.confirmPassword = 'Required';
-          } else if (values.password !== values.confirmPassword) {
-            errors.confirmPassword = 'Passwords do not match';
+          if (!values.new_password2) {
+            errors.new_password2 = 'Required';
+          } else if (values.password !== values.new_password2) {
+            errors.new_password2 = 'Passwords do not match';
           }
           return errors;
         }}
@@ -62,7 +62,7 @@ const PasswordResetConfirm = () => {
             <div className="password-field input-container-password">
               <input
                 type={showPassword ? 'text' : 'password'}
-                name="password"
+                name="new_password1"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.new_password1}
@@ -88,13 +88,13 @@ const PasswordResetConfirm = () => {
             <div className="password-field input-container-password">
               <input
                 type={showPassword ? 'text' : 'password'}
-                name="confirmPassword"
+                name="new_password2"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.confirmPassword}
+                value={values.new_password2}
                 placeholder=" "
               />
-              <label htmlFor="confirmPassword">Повторите пароль</label>
+              <label htmlFor="new_password2">Повторите пароль</label>
               <button
                 type="button"
                 className="toggle-password"
@@ -107,9 +107,9 @@ const PasswordResetConfirm = () => {
                 )}
               </button>
             </div>
-            {errors.confirmPassword &&
-              touched.confirmPassword &&
-              errors.confirmPassword}
+            {errors.new_password2 &&
+              touched.new_password2 &&
+              errors.new_password2}
             <div className="matches">
               {' '}
               <li className={values.new_password1.match(/[0-9]/) ? 'blue' : ''}>
@@ -127,7 +127,7 @@ const PasswordResetConfirm = () => {
               </li>
               <li
                 className={
-                  values.new_password1 === values.confirmPassword &&
+                  values.new_password1 === values.new_password2 &&
                   values.new_password1
                     ? 'blue'
                     : ''
@@ -140,7 +140,7 @@ const PasswordResetConfirm = () => {
             <button
               type="submit"
               className={`submit-button ${
-                values.confirmPassword === values.new_password1 ? 'filled' : ''
+                values.new_password2 === values.new_password1 ? 'filled' : ''
               }`}
               disabled={isSubmitting}
             >
