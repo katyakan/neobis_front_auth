@@ -15,7 +15,7 @@ const PasswordReset = () => {
     onSubmit: async (values) => {
       try {
         const response = await axios.post(
-          'https://cors-anywhere.herokuapp.com/http://34.107.1.158/auth/password_reset/',
+          'https://cors-anywhere.herokuapp.com/http://34.107.1.158/password_reset/',
           { email: values.email },
           {
             headers: {
