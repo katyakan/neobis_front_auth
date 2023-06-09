@@ -6,9 +6,9 @@ const Redirection = () => {
 
   useEffect(() => {
     navigate('/authapp://additionalInfo');
-  }, [navigate]);
+    window.location.href = 'authapp://additionalInfo';
+  }, []);
 
-  return <div> </div>;
+  return <div></div>;
 };
-
 export default Redirection;
