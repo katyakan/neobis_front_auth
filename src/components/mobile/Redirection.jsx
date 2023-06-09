@@ -1,17 +1,14 @@
 import React, { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Redirection = () => {
   const navigate = useNavigate();
-  const { token } = useParams();
 
   useEffect(() => {
-    const redirectUrl = `authapp://additionalInfo/${token}`;
     navigate('/authapp://additionalInfo');
-    window.location.href = redirectUrl;
-  }, [navigate, token]);
+    window.location.href = 'authapp://additionalInfo/{token}';
+  }, []);
 
   return <div></div>;
 };
-
 export default Redirection;
