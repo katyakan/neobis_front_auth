@@ -12,7 +12,7 @@ const Project = () => {
     try {
       await axios.post(
         'https://cors-anywhere.herokuapp.com/http://34.107.1.158/logout/',
-        null,
+
         {
           headers: {
             Authorization: `Bearer ${token}`,
