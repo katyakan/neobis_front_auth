@@ -24,6 +24,7 @@ const PasswordResetConfirm = () => {
           token,
           uid,
           new_password1: values.new_password1,
+          new_password2: values.new_password2,
         }
       );
 
