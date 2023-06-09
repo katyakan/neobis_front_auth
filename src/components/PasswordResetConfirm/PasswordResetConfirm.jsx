@@ -17,11 +17,14 @@ const PasswordResetConfirm = () => {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      const response = await axios.post('/your-api-endpoint', {
-        token,
-        uid,
-        new_password1: values.new_password1,
-      });
+      const response = await axios.post(
+        'https://cors-anywhere.herokuapp.com/http://34.107.1.158/passwordresetconfirm/{uidb64}/{token}/',
+        {
+          token,
+          uid,
+          new_password1: values.new_password1,
+        }
+      );
 
       console.log(response.data);
       setSubmitting(false);
