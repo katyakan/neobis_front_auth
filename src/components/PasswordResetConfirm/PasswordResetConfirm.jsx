@@ -16,6 +16,7 @@ const PasswordResetConfirm = () => {
   };
 
   const handleSubmit = async (values, { setSubmitting }) => {
+    console.log('Form values:', values);
     try {
       const response = await axios.post(
         `https://cors-anywhere.herokuapp.com/http://34.107.1.158/passwordresetconfirm/${uid}/${token}/`,
