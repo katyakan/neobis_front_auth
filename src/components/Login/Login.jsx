@@ -4,12 +4,13 @@ import smile from '../assets/img/smile.png';
 import closed from '../assets/img/closed.png';
 import opened from '../assets/img/opened.png';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isFormFilled, setIsFormFilled] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -33,7 +34,8 @@ const Login = () => {
       );
 
       if (response.ok) {
-        const data = await response.json();
+        navigate('/project');
+        // const data = await response.json();
       } else {
         const errorData = await response.json();
         setErrorMessage(errorData.message);
@@ -77,12 +79,10 @@ const Login = () => {
               />
               <label htmlFor="email">Электронная почта!!!</label>
             </div>
-            {/* Error message */}
+
             {errors.email && touched.email && errors.email}
 
-            {/* Password field */}
             <div className="password-field input-container-password">
-              {/* Password input */}
               <input
                 type={showPassword ? 'text' : 'password'}
                 name="password"
@@ -95,7 +95,7 @@ const Login = () => {
                 placeholder=" "
               />
               <label htmlFor="password">Пароль</label>
-              {/* Toggle password visibility button */}
+
               <button
                 type="button"
                 className="toggle-password"
@@ -104,15 +104,14 @@ const Login = () => {
                 {showPassword ? '🕶️' : '👓'}
               </button>
             </div>
-            {/* Forgot password link */}
 
             <Link to="/passwordreset">Забыли пароль?</Link>
-            {/* Password error message */}
+
             {errors.password && touched.password && errors.password}
             {errorMessage && (
               <div className="error-message">Неверный логин или пароль</div>
             )}
-            {/* Submit button */}
+
             <button
               type="submit"
               disabled={isSubmitting}
