@@ -57,7 +57,7 @@ const PasswordSet = () => {
           if (!values.confirm_password) {
             errors.confirm_password = 'Required';
           } else if (values.password !== values.confirm_password) {
-            errors.confirmPassword = 'Passwords do not match';
+            errors.confirm_password = 'Passwords do not match';
           }
           return errors;
         }}
@@ -77,6 +77,7 @@ const PasswordSet = () => {
               <input
                 type={showPassword ? 'text' : 'password'}
                 name="password"
+                id="password"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.password}
@@ -101,6 +102,7 @@ const PasswordSet = () => {
               <input
                 type={showPassword ? 'text' : 'password'}
                 name="confirm_password"
+                id="confirm_password"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.confirm_password}
