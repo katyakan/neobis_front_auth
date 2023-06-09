@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom';
 
 const Redirection = () => {
   const navigate = useNavigate();
+  const { token } = useParams();
 
   useEffect(() => {
     navigate('/authapp://additionalInfo');
-    window.location.href = 'authapp://additionalInfo?token=${token}';
+    window.location.href = 'authapp://additionalInfo/${token}';
   }, []);
 
   return <div></div>;
