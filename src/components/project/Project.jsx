@@ -9,14 +9,14 @@ const Project = () => {
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
-      const headers = {
-        Authorization: 'Bearer ${token}',
-      };
-
       await axios.post(
         'https://cors-anywhere.herokuapp.com/http://34.107.1.158/logout/',
         {},
-        { headers }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       console.log('Logout successful');

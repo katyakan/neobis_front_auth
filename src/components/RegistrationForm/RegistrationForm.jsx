@@ -71,7 +71,7 @@ const RegistrationForm = () => {
       if (response.ok) {
         alert('Registration successful!');
         setIsRegistered(true);
-        navigate(`/passwordset/${token}`); // Navigate to password set page with the token
+        navigate(`/passwordset/${token}`); 
       } else {
         setError('Registration failed. Please try again.');
       }

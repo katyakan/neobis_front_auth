@@ -31,7 +31,7 @@ function App() {
             element={<PasswordResetConfirm />}
           ></Route>
           <Route path="/redirection" element={<Redirection />}></Route>
-          <Route path="/project" element={<Project />}></Route>
+          <Route path="/project/:token" element={<Project />}></Route>
         </Routes>
       </div>
     </>
