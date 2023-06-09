@@ -8,7 +8,7 @@ const Redirection = () => {
 
   useEffect(() => {
     navigate('/authapp://additionalInfo');
-    window.location.href = 'authapp://additionalInfo/${token}';
+    window.location.href = `authapp://additionalInfo/${token}`;
   }, []);
 
   return <div></div>;
