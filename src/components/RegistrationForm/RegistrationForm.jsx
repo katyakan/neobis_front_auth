@@ -80,7 +80,7 @@ const RegistrationForm = () => {
   };
 
   if (isRegistered) {
-    return <Navigate to="/passwordset" />;
+    return <Navigate to="/passwordset/:token" />;
   }
 
   return (

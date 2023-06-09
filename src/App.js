@@ -23,7 +23,7 @@ function App() {
             path="/registrationform/:token"
             element={<RegistrationForm />}
           ></Route>
-          <Route path="/passwordset" element={<PasswordSet />}></Route>
+          <Route path="/passwordset/:token" element={<PasswordSet />}></Route>
           <Route path="/passwordreset" element={<PasswordReset />}></Route>
           <Route
             path="/passwordresetconfirm/:uid/:token"
