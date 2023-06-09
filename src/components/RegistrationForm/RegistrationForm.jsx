@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Navigate } from 'react-router-dom';
 import s from './registrationForm.css';
 import smile from '../assets/img/smile.png';
 import { Formik, Field, Form } from 'formik';
+import { useParams, Navigate, useNavigate } from 'react-router-dom';
 
 const RegistrationForm = () => {
   const [dateValue, setDateValue] = useState('');
@@ -11,7 +11,7 @@ const RegistrationForm = () => {
   const [error, setError] = useState(null);
 
   const { token } = useParams();
-
+  const navigate = useNavigate();
   useEffect(() => {
     const checkToken = async () => {
       try {
@@ -71,6 +71,7 @@ const RegistrationForm = () => {
       if (response.ok) {
         alert('Registration successful!');
         setIsRegistered(true);
+        navigate(`/passwordset/${token}`); // Navigate to password set page with the token
       } else {
         setError('Registration failed. Please try again.');
       }

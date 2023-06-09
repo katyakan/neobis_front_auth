@@ -5,8 +5,10 @@ import opened from '../assets/img/opened.png';
 import closed from '../assets/img/closed.png';
 import styles from './passwordSet.css';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const PasswordSet = () => {
+  const { token } = useParams();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
