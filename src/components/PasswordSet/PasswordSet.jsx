@@ -16,6 +16,7 @@ const PasswordSet = () => {
   };
   const handleFormSubmit = async (values, { setSubmitting }) => {
     try {
+      console.log('Form values:', values);
       await axios.put(
         'https://cors-anywhere.herokuapp.com/http://34.107.1.158/password-update/',
         {
