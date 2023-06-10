@@ -41,8 +41,7 @@ const Login = () => {
         const token = data.token;
         setLoggedInToken(token);
         console.log('Token:', token);
-        navigate(`/project/${loggedInToken}`);
-
+        navigate(`/project/${token}`);
         // const data = await response.json();
       } else {
         const errorData = await response.json();
