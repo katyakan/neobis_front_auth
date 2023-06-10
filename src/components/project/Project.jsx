@@ -7,7 +7,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Project = () => {
   const navigate = useNavigate();
-  const { token } = useParams();
+
   const location = useLocation();
   const token = location.pathname.split('/').pop();
 
