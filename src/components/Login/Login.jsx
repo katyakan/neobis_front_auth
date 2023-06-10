@@ -12,6 +12,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
   const { token } = useParams();
+  const [loggedInToken, setLoggedInToken] = useState('');
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -38,8 +39,10 @@ const Login = () => {
       if (response.ok) {
         const data = await response.json();
         const token = data.token;
+        setLoggedInToken(token);
         console.log('Token:', token);
-        navigate(`/project/${token}`);
+        navigate(`/project/${loggedInToken}`);
+
         // const data = await response.json();
       } else {
         const errorData = await response.json();

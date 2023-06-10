@@ -3,11 +3,13 @@ import styles from './project.css';
 import smile from '../assets/img/smile.png';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Project = () => {
   const navigate = useNavigate();
   const { token } = useParams();
+  const location = useLocation();
+  const token = location.pathname.split('/').pop();
 
   useEffect(() => {
     console.log('Token:', token);
