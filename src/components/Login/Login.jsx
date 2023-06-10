@@ -84,7 +84,7 @@ const Login = () => {
                 value={values.email}
                 placeholder=" "
               />
-              <label htmlFor="email">Электронная почта!!!</label>
+              <label htmlFor="email">Электронная почта</label>
             </div>
 
             {errors.email && touched.email && errors.email}
