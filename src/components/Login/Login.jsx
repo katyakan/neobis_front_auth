@@ -108,7 +108,11 @@ const Login = () => {
                 className="toggle-password"
                 onClick={togglePasswordVisibility}
               >
-                {showPassword ? '🕶️' : '👓'}
+                {showPassword ? (
+                  <img className="eye" src={closed} alt="password unshown" />
+                ) : (
+                  <img className="eye" src={opened} alt="password shown" />
+                )}
               </button>
             </div>
 
