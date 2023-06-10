@@ -24,14 +24,13 @@ const Login = () => {
 
   const handleFormSubmit = async (values, { setSubmitting }) => {
     try {
-      console.log('токен в запросе на эндпоинт', 'Token:', token);
+      console.log('Token:', token);
       const response = await fetch(
         'https://cors-anywhere.herokuapp.com/http://34.107.1.158/login/',
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(values),
         }
@@ -40,12 +39,8 @@ const Login = () => {
       if (response.ok) {
         const data = await response.json();
         const token = data.token;
-
-        console.log(
-          ' вывод токена в блоке if, получен или нет',
-          'Token:',
-          token
-        );
+        
+        console.log('Token:', token);
         navigate(`/project`);
         // const data = await response.json();
       } else {
