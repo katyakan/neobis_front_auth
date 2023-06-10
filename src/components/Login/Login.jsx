@@ -40,7 +40,7 @@ const Login = () => {
         const data = await response.json();
         const token = data.token;
 
-        console.log('Token:', token);
+        console.log('первый вывод токена, получен или нет' 'Token:', token);
         navigate(`/project`);
         // const data = await response.json();
       } else {
