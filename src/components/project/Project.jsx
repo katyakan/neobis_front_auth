@@ -15,6 +15,7 @@ const Project = () => {
 
   const handleLogout = async () => {
     try {
+      console.log('Token:', token);
       await axios.post(
         'https://cors-anywhere.herokuapp.com/http://34.107.1.158/logout/',
         {
