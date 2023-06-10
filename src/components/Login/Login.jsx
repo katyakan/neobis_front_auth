@@ -4,13 +4,14 @@ import smile from '../assets/img/smile.png';
 import closed from '../assets/img/closed.png';
 import opened from '../assets/img/opened.png';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isFormFilled, setIsFormFilled] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+  const { token } = useParams();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -22,6 +23,7 @@ const Login = () => {
 
   const handleFormSubmit = async (values, { setSubmitting }) => {
     try {
+      console.log('Token:', token);
       const response = await fetch(
         'https://cors-anywhere.herokuapp.com/http://34.107.1.158/login/',
         {
