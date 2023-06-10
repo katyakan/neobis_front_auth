@@ -45,7 +45,7 @@ const Login = () => {
           'Token:',
           token
         );
-        navigate(`/project`);
+        navigate(`/project/{token}`);
         // const data = await response.json();
       } else {
         const errorData = await response.json();
